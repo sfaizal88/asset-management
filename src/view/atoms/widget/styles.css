@@ -1,0 +1,23 @@
+/**
+ * Widget style file
+ * @author - Faizal
+ * @date - 19th June 2024
+ */
+.counter-widget-container {
+    background: #fff;
+    padding: 12px;
+    border-radius: 4px;
+}
+.counter-widget-container .counter-icon {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 8px;
+}
+.counter-widget-container .counter-title {
+    font-size: 11px;
+}
+.counter-widget-container .counter-subtitle {
+    font-size: 17px;
+    font-weight: bold;
+}

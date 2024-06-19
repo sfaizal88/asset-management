@@ -1,0 +1,19 @@
+/**
+ * Login style file
+ * @author - Faizal
+ * @date - 19th June 2024
+ */
+.login-container {
+   border: 1px solid #dadce0;
+   border-radius: 8px;
+   background: #FFFFFF;
+   box-shadow: 1px 1px 2px #d4d4d4;
+   padding: 20px 24px 24px 24px;
+   width: 330px;
+}
+.login-title {
+   font-size: 30px;
+}
+.login-info {
+   margin-bottom: 12px;
+}

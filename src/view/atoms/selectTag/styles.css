@@ -1,0 +1,13 @@
+/**
+ * Select tag style
+ * @author - Faizal
+ * @date - 19th June 2024
+ */
+ .select-field {
+    border: 1px solid #c4c4c4;
+    width: 100%;
+    border-radius: 4px;
+    padding: 4px 8px;
+    margin-bottom: 8px;
+    display: block;
+ }

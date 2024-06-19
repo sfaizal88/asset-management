@@ -1,0 +1,28 @@
+/**
+ * Dashboard style file
+ * @author - Faizal 
+ * @date - 19th June 2024
+ */
+.table-header {
+    font-size: 10px;
+    font-weight: bold;
+    padding: 4px 12px;
+    background-color: #f9f8fa;
+    flex: 1;
+}
+.table-row {
+    font-size: 10px;
+    font-weight: normal;
+    padding: 8px 12px;
+    border-bottom: none;
+    background-color: #fff;
+    display: flex;
+    border: 1px solid #eff0f3;
+    margin: 8px 0;
+    transition: all linear 0.5s;
+}
+.table-row:hover {
+   background-color: #f9f8fa;
+   border: 1px solid #f9f8fa;
+   cursor: pointer;
+}

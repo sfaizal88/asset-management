@@ -1,0 +1,19 @@
+/**
+ * App style file
+ * @author - Faizal
+ * @date - 12th June 2024
+ */
+ .app-layout {
+    display: flex;
+    flex: 1;
+ }
+ .left-layout {
+   width: 180px;
+ }
+ .right-layout {
+   flex: 1;
+   background-color: #f5f6fa;
+ }
+ .body-content {
+  padding: 16px 16px;
+ }

@@ -1,0 +1,66 @@
+{
+    "getAllAsset": [
+      {
+        "id": 1,
+        "asset_name": "Thondi Property",
+        "details": "",
+        "asset_type": "PROPERTY",
+        "asset_code": "",
+        "cost": "2500000",
+        "quantity": "1",
+        "currentPrice": ""
+      },
+      {
+        "id": 2,
+        "asset_name": "Tata Steel Ltd",
+        "details": "",
+        "asset_type": "STOCK",
+        "asset_code": "TATASTEEL",
+        "cost": "150.87",
+        "quantity": "87",
+        "currentPrice": ""
+      },
+      {
+        "id": 3,
+        "asset_name": "Apple Inc",
+        "details": "",
+        "asset_type": "STOCK",
+        "asset_code": "AAPL",
+        "cost": "8900.98",
+        "quantity": "7",
+        "currentPrice": ""
+      },
+      {
+        "id": 3,
+        "asset_name": "Ethereum",
+        "asset_code": "ethereum",
+        "details": "",
+        "asset_type": "CRYPTO",
+        "cost": "3000",
+        "quantity": "13",
+        "currentPrice": ""
+      },
+      {
+        "id": 4,
+        "asset_name": "Bitcoin",
+        "asset_code": "bitcoin",
+        "details": "",
+        "asset_type": "CRYPTO",
+        "cost": "64000",
+        "quantity": "3.5",
+        "currentPrice": ""
+      }
+    ],
+    "getAssetById": 
+      {
+        "id": 4,
+        "asset_name": "Bitcoin",
+        "asset_code": "bitcoin",
+        "details": "",
+        "asset_type": "CRYPTO",
+        "cost": "64000",
+        "quantity": "3.5",
+        "currentPrice": ""
+      }
+  }
+  

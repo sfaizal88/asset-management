@@ -1,0 +1,43 @@
+/**
+ * Dashboard style file
+ * @author - Faizal 
+ * @date - 19th June 2024
+ */
+.symbol {
+    border-radius: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+.crypto-symbol {
+    color: #f79728;
+    background: #ffe3c2;
+    width: 45px;
+    height: 45px;
+}
+.property-symbol {
+    color: #155724;
+    background-color: #d4edda;
+    width: 45px;
+    height: 45px;
+}
+.currency-symbol {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    width: 45px;
+    height: 45px;
+}
+.stock-symbol {
+    color: #721c24;
+    background-color: #f8d7da;
+    width: 45px;
+    height: 45px;
+}
+.pie-chart-container {
+    width: 340px;
+    height: 340px;
+    justify-content: center;
+    display: inline-flex;
+    align-items: center;
+}
