@@ -25,7 +25,8 @@ const Chip = ({
   const ChipClass = {
     [AssetEnum.STOCK]: 'red-chip',
     [AssetEnum.CRYPTO]: 'yellow-chip',
-    [AssetEnum.PROPERTY]: 'green-chip',
+    [AssetEnum.PROPERTY]: 'blue-chip',
+    [AssetEnum.CURRENCY]: 'green-chip',
   }
   return (
     <div className={clsx("chip-container", ChipClass[label])}>{label}</div>

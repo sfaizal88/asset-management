@@ -9,6 +9,9 @@
 import clsx from 'clsx';
 import {PropsWithChildren} from 'react';
 
+// COMMON COMPONENT
+import {EmptyLabel} from '../';
+
 // STYLE IMPORT
 import  './styles.css';
 
@@ -31,7 +34,7 @@ const FormRow = ({
                 {label} {required && <span className="required">&nbsp;*</span>}
             </div>
             <div className={clsx("field")}>
-                {children}
+                {children || <EmptyLabel/>}
             </div>
         </div>
     )

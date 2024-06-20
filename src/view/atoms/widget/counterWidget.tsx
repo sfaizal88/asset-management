@@ -8,19 +8,26 @@
 // GENERIC IMPORT
 import { ReactElement } from 'react';
 
+// OTHER COMPONENT IMPORT
+import {StockIcon} from '../';
+
+// UTIL IMPORT
+import {calculatePercentageDifference, convertToCurrency} from '../../../utils';
+import type {Total} from '../../../utils/types';
+
 // STYLE IMPORT
 import './styles.css';
 
 type CounterWidgetProps = {
     title: string;
-    count: string | number;
-    icon: ReactElement
+    icon: ReactElement;
+    total?: Total
 }
 
 const CounterWidget = ({
     title,
-    count,
-    icon
+    icon,
+    total
 }: CounterWidgetProps) => {
   return (
     <div className="counter-widget-container flex flex-1"> 
@@ -29,7 +36,10 @@ const CounterWidget = ({
       </div>
       <div className='flex-1'>
         <div className='counter-title text-right'>{title}</div>
-        <div className='counter-subtitle text-right'>{count}</div>
+        <div className='counter-subtitle text-right'>
+          <div className='whitespace-nowrap flex flex-1 items-center justify-end'>
+            {convertToCurrency(total?.currentAssetTotal || 0)}&nbsp;{total && <StockIcon isSmallSize value={calculatePercentageDifference(total.currentAssetTotal, total.currentMarketTotal)}/>}</div>
+        </div>
       </div>
     </div>
   )

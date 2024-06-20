@@ -13,10 +13,7 @@ import {FormRow} from '../../../molecules';
 
 // UTILS IMPORT
 import type {AssetType} from '../../../../utils/types';
-import {AssetTypeOptions, CryptoCodeOptions} from '../../../../utils/constants';
-
-// API IMPORT
-import {SUBMIT_ASSET, GET_ASSET_BY_ID} from '../../../../api/constants';
+import {AssetTypeOptions, CryptoCodeOptions, CurrencyOptions, StockCodeOptions} from '../../../../utils/constants';
 
 // ROUTER IMPORT
 import * as PATH from '../../../routes/constants';
@@ -24,6 +21,9 @@ import * as PATH from '../../../routes/constants';
 // STYLE IMPORT
 import '../styles.css';
 import { AssetEnum } from '../../../../utils/enum';
+
+// CUSTOME HOOK 
+import {useManageAssetHook} from '../useManageAssetHook';
 
 const AddAssetPage = () => {
     // DECLARE STATE
@@ -35,52 +35,18 @@ const AddAssetPage = () => {
 
     // DECLARE NAVIGATE
     const navigate = useNavigate();
-
-    const submitAsset = async (data: AssetType) => {
-        try {
-            const requestOptions = {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            };
-            const response = await fetch(SUBMIT_ASSET, requestOptions);
-            if (!response.ok) {
-                throw new Error("Server error");
-            } else {
-                alert("Saved successfully");
-                navigate(PATH.ASSET_LISTING_PATH);
-            }
-        } catch (error) {
-            console.log("Error")
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    const getAssetById = async () => {
-        try {
-            const response = await fetch(`${GET_ASSET_BY_ID}?id=${id}`);
-            if (!response.ok) {
-                throw new Error("Server error");
-            }
-            const result = await response.json();
-            setAsset(result);
-        } catch (error) {
-            console.log("Error")
-        } finally {
-            setLoading(false);
-        }
-    }
+    const manageAssetHook = useManageAssetHook({
+        setAsset,
+        setLoading
+    });
 
     const handleChange = (event: any) => {
         setAsset({...asset, [event.target.name]: event.target.value});
     };
 
     useEffect(() => {
-        if (id) getAssetById();
-    }, []);
+        if (id) manageAssetHook.getAssetById(Number(id));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     if (isLoading) return <Loader/>
 
@@ -102,16 +68,34 @@ const AddAssetPage = () => {
             {asset?.asset_type === AssetEnum.CRYPTO && 
                 <div className='flex flex-1'>
                     <div className='flex-1'>
-                        <FormRow label="Asset code" required>
-                            <SelectTag name="asset_type" options={CryptoCodeOptions} value={asset?.asset_code} onChangeHandler={handleChange}/>
+                        <FormRow label="Cyrypto code" required>
+                            <SelectTag name="asset_code" options={CryptoCodeOptions} value={asset?.asset_code} onChangeHandler={handleChange}/>
+                        </FormRow>
+                    </div>
+                </div>
+            }
+            {asset?.asset_type === AssetEnum.CURRENCY && 
+                <div className='flex flex-1'>
+                    <div className='flex-1'>
+                        <FormRow label="Currency code" required>
+                            <SelectTag name="asset_code" options={CurrencyOptions} value={asset?.asset_code} onChangeHandler={handleChange}/>
+                        </FormRow>
+                    </div>
+                </div>
+            }
+            {asset?.asset_type === AssetEnum.STOCK && 
+                <div className='flex flex-1'>
+                    <div className='flex-1'>
+                        <FormRow label="Stock code" required>
+                            <SelectTag name="asset_code" options={StockCodeOptions} value={asset?.asset_code} onChangeHandler={handleChange}/>
                         </FormRow>
                     </div>
                 </div>
             }
             <div className='flex flex-1'>
                 <div className='flex-1'>
-                    <FormRow label="Cost" required>
-                        <TextField name="cost" placeholder='Enter the asset cost' value={asset?.cost} onChangeHandler={handleChange}/>
+                    <FormRow label="Cost ($USD)" required>
+                        <TextField name="cost" placeholder='Enter the asset per cost' value={asset?.cost} onChangeHandler={handleChange}/>
                     </FormRow>
                 </div>
                 <div className='flex-1'>
@@ -130,7 +114,7 @@ const AddAssetPage = () => {
             <div className='flex flex-1'>
                 <div className='flex-1 text-right mr-3'>
                     <Button label="Back to listing" type='button' isSecondary onClickHandler={() => navigate(PATH.ASSET_LISTING_PATH)}/>
-                    <Button label={id ? "Save asset" : "Create asset"} type='button'  onClickHandler={() => submitAsset(asset)}/>
+                    <Button label={id ? "Save asset" : "Create asset"} type='button'  onClickHandler={() => manageAssetHook.saveAsset(asset)}/>
                 </div>
             </div>
                     

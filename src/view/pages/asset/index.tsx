@@ -8,21 +8,19 @@ import {useEffect, useState} from 'react';
 import {useNavigate, Link} from 'react-router-dom';
 
 // COMMON COMPONENT
-import { Container, Loader, Chip, TextField, Button } from '../../atoms';
+import { Container, Loader, Chip, TextField, Button, StockIcon } from '../../atoms';
 import { EmptyScreen } from '../../molecules';
 
 // UTILS IMPORT
 import type {AssetType} from '../../../utils/types';
-import {convertToCurrency} from '../../../utils';
+import {convertToCurrency, calculatePercentageDifference} from '../../../utils';
 
 // ROUTER IMPORT
 import * as PATH from '../../routes/constants';
 
-// API IMPORT
-import {GET_ALL_ASSETS} from '../../../api/constants';
-
 // CUSTOME HOOK 
-import {useAssetHook} from './useAssetHook';
+import {useManageAssetHook} from './useManageAssetHook';
+
 
 // STYLE IMPORT
 import './styles.css';
@@ -36,23 +34,10 @@ const AssetPage = () => {
 
     // DECLARE NAVIGATE
     const navigate = useNavigate();
-    const assetHook = useAssetHook();
-
-    const getAssetList = async () => {
-        try {
-            const response = await fetch(GET_ALL_ASSETS);
-            if (!response.ok) {
-                throw new Error("Server error");
-            }
-            const result = await response.json();
-            const updateCryptoData = await assetHook.getCryptoPriceBySymbol(result)
-            setAssetList(updateCryptoData);
-        } catch (error) {
-            console.log("Error")
-        } finally {
-            setLoading(false);
-        }
-    }
+    const manageAssetHook = useManageAssetHook({
+        setAssetList,
+        setLoading
+    });
 
     const gotoPage = (path: string) => {
         navigate(path);
@@ -67,8 +52,8 @@ const AssetPage = () => {
     };
 
     useEffect(() => {
-        getAssetList();
-    }, []);
+        manageAssetHook.getAssetList();
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     if (isLoading) return <Loader/>
 
@@ -89,6 +74,7 @@ const AssetPage = () => {
                 <div className='flex-1 text-right'>Quantity</div>
                 <div className='flex-1 text-right'>Cost</div>
                 <div className='flex-1 text-right'>Current price</div>
+                <div className='flex-1 text-right'>Percentage</div>
                 <div className='flex-none w-60 text-right'>Actions</div>
             </div>
             {filterList(assetList).length ? 
@@ -99,9 +85,10 @@ const AssetPage = () => {
                     <div className='flex-1 text-right'>{item.quantity}</div>
                     <div className='flex-1 text-right'>{convertToCurrency(item.cost)}</div>
                     <div className='flex-1 text-right'>{convertToCurrency(item.currentPrice)}</div>
+                    <div className='flex-1 text-right'>{<StockIcon value={calculatePercentageDifference(item.cost, item.currentPrice)}/>}</div>
                     <div className='flex-none w-60 text-right'>
                         <Link to={`${PATH.ADD_ASSET_PATH}/${item.id}`}>Edit</Link>&nbsp;&nbsp;|&nbsp;&nbsp; 
-                        <a href="void">Delete</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
+                        <div className='link' onClick={() => manageAssetHook.deleteAssetById(item.id || 0)}>Delete</div>&nbsp;&nbsp;|&nbsp;&nbsp; 
                         <Link to={`${PATH.VIEW_ASSET_PATH}/${item.id}`}>View</Link>
                     </div>
                 </div>)) : 

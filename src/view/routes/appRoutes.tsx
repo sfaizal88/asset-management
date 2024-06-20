@@ -27,7 +27,7 @@ import ViewAssetPage from '../pages/asset/components/viewAsset';
 const AppRoutes = () => {
     // RENDER HTML
     return (
-        <div className="app-layout">
+        <div className="flex flex-1 w-full h-screen">
             <div className="left-layout">
                 <Menu/>
             </div>

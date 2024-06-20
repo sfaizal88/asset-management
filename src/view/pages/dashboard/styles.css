@@ -34,9 +34,25 @@
     width: 45px;
     height: 45px;
 }
+.chart-layout {
+    background-color: #fff;
+    padding: 20px 24px 24px 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
 .pie-chart-container {
     width: 340px;
-    height: 340px;
+    height: auto;
+    justify-content: center;
+    display: inline-flex;
+    align-items: center;
+}
+.bar-chart-container {
+    width: 450px;
+    height: auto;
     justify-content: center;
     display: inline-flex;
     align-items: center;

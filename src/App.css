@@ -20,5 +20,11 @@
   font-weight: normal;
   color: #7f8c8d;
   margin-bottom: 16px;
-
+}
+.link {
+  display: inline;
+  color: #3498db
+}
+.link:hover {
+  text-decoration: underline;
 }

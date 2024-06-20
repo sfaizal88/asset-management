@@ -8,20 +8,20 @@
         "asset_code": "",
         "cost": "2500000",
         "quantity": "1",
-        "currentPrice": ""
+        "currentPrice": "3500000"
       },
       {
         "id": 2,
-        "asset_name": "Tata Steel Ltd",
+        "asset_name": "Amazon",
         "details": "",
         "asset_type": "STOCK",
-        "asset_code": "TATASTEEL",
+        "asset_code": "AMZN",
         "cost": "150.87",
         "quantity": "87",
         "currentPrice": ""
       },
       {
-        "id": 3,
+        "id": 4,
         "asset_name": "Apple Inc",
         "details": "",
         "asset_type": "STOCK",
@@ -31,7 +31,7 @@
         "currentPrice": ""
       },
       {
-        "id": 3,
+        "id": 5,
         "asset_name": "Ethereum",
         "asset_code": "ethereum",
         "details": "",
@@ -41,13 +41,33 @@
         "currentPrice": ""
       },
       {
-        "id": 4,
+        "id": 6,
         "asset_name": "Bitcoin",
         "asset_code": "bitcoin",
         "details": "",
         "asset_type": "CRYPTO",
         "cost": "64000",
         "quantity": "3.5",
+        "currentPrice": ""
+      },
+      {
+        "id": 7,
+        "asset_name": "Singapore dollar",
+        "asset_code": "SGD",
+        "details": "",
+        "asset_type": "CURRENCY",
+        "cost": "1.21",
+        "quantity": "1200",
+        "currentPrice": ""
+      },
+      {
+        "id": 8,
+        "asset_name": "AED - United Arab Emirates Dirham",
+        "asset_code": "AED",
+        "details": "",
+        "asset_type": "CURRENCY",
+        "cost": "3.33",
+        "quantity": "1000",
         "currentPrice": ""
       }
     ],

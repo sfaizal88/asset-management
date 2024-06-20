@@ -21,3 +21,19 @@
     font-size: 17px;
     font-weight: bold;
 }
+.widget-title-container {
+    width: 100%;
+    border-bottom: 1px solid #ecf0f1;
+    margin-bottom: 16px;
+}
+.widget-title {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+}
+.widget-subtitle {
+    font-size: 11px;
+    text-align: left;
+    padding-bottom: 8px;
+    color: #7f8c8d;
+}

@@ -8,56 +8,40 @@ import {useState, useEffect} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 
 // COMMON COMPONENT
-import { Container, Loader, Button } from '../../../atoms';
+import { Container, Loader, Button, StockIcon } from '../../../atoms';
 import {FormRow} from '../../../molecules';
 
 // UTILS IMPORT
 import type {AssetType} from '../../../../utils/types';
-import {convertToCurrency} from '../../../../utils';
-
-// API IMPORT
-import {GET_ASSET_BY_ID} from '../../../../api/constants';
+import {convertToCurrency, calculatePercentageDifference} from '../../../../utils';
 
 // ROUTER IMPORT
 import * as PATH from '../../../routes/constants';
 
 // CUSTOME HOOK 
-import {useAssetHook} from '../useAssetHook';
+import {useManageAssetHook} from '../useManageAssetHook';
 
 // STYLE IMPORT
 import '../styles.css';
 
 const ViewAssetPage = () => {
     // DECLARE STATE
-    const [asset, setAsset] = useState<AssetType>();
+    const [asset, setAsset] = useState<AssetType>({} as AssetType);
     const [isLoading, setLoading] = useState<boolean>(true);
 
     // PARAM AND CUSTOME HOOK
     const { id } = useParams();
-    const assetHook = useAssetHook();
+    const manageAssetHook = useManageAssetHook({
+        setAsset,
+        setLoading
+    });
 
     // DECLARE NAVIGATE
     const navigate = useNavigate();
 
-    const getAssetById = async () => {
-        try {
-            const response = await fetch(`${GET_ASSET_BY_ID}?id=${id}`);
-            if (!response.ok) {
-                throw new Error("Server error");
-            }
-            const result = await response.json();
-            const updateCryptoData = await assetHook.getCryptoPriceBySymbol([result])
-            setAsset(updateCryptoData[0]);
-        } catch (error) {
-            console.log("Error")
-        } finally {
-            setLoading(false);
-        }
-    }
-
     useEffect(() => {
-        getAssetById();
-    }, []);
+        if (id) manageAssetHook.getAssetById(Number(id));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     if (isLoading) return <Loader/>
 
@@ -77,7 +61,7 @@ const ViewAssetPage = () => {
             </div>
             <div className='flex flex-1'>
                 <div className='flex-1'>
-                    <FormRow label="Cost">
+                    <FormRow label="Cost (USD) per asset">
                         {convertToCurrency(asset?.cost || 0)}
                     </FormRow>
                 </div>
@@ -90,7 +74,7 @@ const ViewAssetPage = () => {
             <div className='flex flex-1'>
                 <div className='flex-1'>
                     <FormRow label="Current price">
-                        {asset?.currentPrice}
+                        <div className='flex flex-1'>{convertToCurrency(asset?.currentPrice || 0)}&nbsp;{<StockIcon value={calculatePercentageDifference(asset?.cost, asset?.currentPrice)}/>}</div>
                     </FormRow>
                 </div>
                 <div className='flex-1'>

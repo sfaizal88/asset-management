@@ -1,0 +1,14 @@
+/**
+ * Loader style file
+ * @author - Faizal
+ * @date - 19th June 2024
+ */
+.negative-stock {
+    color: #f54218
+}
+.positive-stock {
+   color: #35b520
+}
+.stock-value-small {
+    font-size: 12px;
+}

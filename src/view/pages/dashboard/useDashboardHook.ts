@@ -6,18 +6,22 @@
 // GENERIC IMPORT
 
 // UTILS IMPORT
-import type {AssetType} from '../../../utils/types';
-import {AssetEnum} from '../../../utils/enum';
+import type {AllAssetTotal} from '../../../utils/types';
 
 export function useDashboardHook() {
 
-    const getPieChartData = () => {
+    const getPieChartData = (totalData: AllAssetTotal) => {
         const pieChartData = {
             labels: ['Crypto', 'Stock', 'Property', 'Currency'],
             datasets: [
             {
                 label: '# of Asset',
-                data: [12, 19, 3, 5, 2],
+                data: [
+                    totalData.crypto.currentMarketTotal, 
+                    19, 
+                    totalData.property.currentMarketTotal, 
+                    totalData.currency.currentMarketTotal
+                  ],
                 backgroundColor: [
                     'rgba(255, 206, 86, 0.6)',
                     'rgba(255, 99, 132, 0.6)',
@@ -34,12 +38,24 @@ export function useDashboardHook() {
     const getPieChartOptions = () => {
         return {
             responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: "bottom" as const, // This positions the legend at the bottom
+                }
+            }
         }
     }
 
     const getBarChartOptions = () => {
         return {
             responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: "bottom" as const, // This positions the legend at the bottom
+                }
+            },
             scales: {
                 y: {
                   beginAtZero: true,
@@ -57,12 +73,17 @@ export function useDashboardHook() {
         }
     }
 
-    const getBarChartData = () => {
+    const getBarChartData = (totalData: AllAssetTotal) => {
         const barChartData = {
             labels: ['Crypto', 'Stock', 'Property', 'Currency'],
             datasets: [{
               label: 'All the Asset',
-              data: [12, 19, 3, 5, 2],
+              data: [
+                totalData.crypto.currentMarketTotal, 
+                19, 
+                totalData.property.currentMarketTotal, 
+                totalData.currency.currentMarketTotal
+              ],
               backgroundColor: [
                 'rgba(255, 206, 86, 0.6)',
                 'rgba(255, 99, 132, 0.6)',
