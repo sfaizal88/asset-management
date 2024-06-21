@@ -4,7 +4,15 @@
  * @date - 19th June 2024
  */
 // UTILS IMPORT
-import {AssetEnum, CryptoCurrencyCodeEnum, CurrencyCodeEnum} from './enum';
+import {AssetEnum, CryptoCurrencyCodeEnum, CurrencyCodeEnum, NotificationEnum} from './enum';
+
+
+// NOTIFICATION CONTEXT DATA TYPE
+export type NotificationContextType = {
+    type: NotificationEnum,
+    message: string,
+    isOpen: boolean,
+}
 
 export type AssetType = {
     id: number | undefined | null;

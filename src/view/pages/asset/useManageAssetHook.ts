@@ -18,7 +18,11 @@ import {useAssetHook} from '../../../hooks/useAssetHook';
 
 // STORAGE
 import * as Storage from '../../../storage';
+
+// UTILS IMPORT
 import { AssetEnum } from '../../../utils/enum';
+import { formValidationMessages } from '../../../utils/validationMessages';
+import useNotification from '../../../utils/notification';
 
 // API IMPORT
 // import {GET_ALL_ASSETS, GET_ASSET_BY_ID, SUBMIT_ASSET} from '../../../api/constants';
@@ -37,6 +41,9 @@ export function useManageAssetHook({
 }: ManageAssetHookProps) {
     // CUSTOM HOOK
     const assetHook = useAssetHook();
+
+    // NOTIFICATION
+    const setNotification = useNotification();
 
     // NAVIAGTE
     const navigate = useNavigate();
@@ -80,14 +87,15 @@ export function useManageAssetHook({
             if (data?.id) {
                 console.log("Edit data: ");
                 Storage.editAssetById(data);
+                setNotification.success(formValidationMessages.assetUpdated);
             } else {
                 console.log("Create data: ");
                 Storage.addNewAsset(data);
+                setNotification.success(formValidationMessages.assetCreated);
             }
-            alert("Saved successfully");
             navigate(PATH.ASSET_LISTING_PATH);
         } catch (error) {
-            console.log("Error")
+            setNotification.error();
         } finally {
             setLoading(false);
         }
@@ -124,10 +132,11 @@ export function useManageAssetHook({
                 const updatedList = Storage.deleteAssetById(assetId);
                 setAssetList?.(updatedList)
             }
-            alert("Deleted successfully");
+            setNotification.success(formValidationMessages.assetRemoved);
             navigate(PATH.ASSET_LISTING_PATH);
         } catch (error) {
             console.log("Error")
+            setNotification.error();
         } finally {
             setLoading(false);
         }

@@ -3,6 +3,14 @@
  * @author - Faizal 
  * @date - 19th June 2024
  */
+
+// NOTIFICATION TYPE
+export enum NotificationEnum {
+    success = 'success',
+    error = 'error',
+}
+
+// ASSET TYPE
 export enum AssetEnum {
     PROPERTY = 'PROPERTY',
     STOCK = 'STOCK',
