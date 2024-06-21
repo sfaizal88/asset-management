@@ -17,6 +17,7 @@ body {
   color: #2c3e50;
   box-sizing: border-box;
   font-size: 12px;
+  background-color: #f5f6fa;
 }
 a {
   color: #3498db
@@ -28,4 +29,11 @@ a:hover {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .only-desktop {
+    display: none;
+  }
 }

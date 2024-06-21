@@ -6,6 +6,8 @@
  * 
  */
 // GENERIC IMPORT
+import clsx from 'clsx';
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 // ROUTER IMPORT
@@ -25,14 +27,17 @@ import AddAssetPage from '../pages/asset/components/addAsset';
 import ViewAssetPage from '../pages/asset/components/viewAsset';
 
 const AppRoutes = () => {
+    // DECLARE STATE
+    const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
+
     // RENDER HTML
     return (
-        <div className="flex flex-1 w-full h-screen">
-            <div className="left-layout">
-                <Menu/>
+        <div className="flex flex-1 w-full h-full">
+            <div className="left-layout w-0 sm:w-[180px]">
+                <Menu {...{showMobileMenu, setShowMobileMenu}}/>
             </div>
             <div className="right-layout">
-                <Header/>
+                <Header {...{setShowMobileMenu}}/>
                 <div className="body-content">
                     <Routes>
                         <Route path={PATH.DASHBOARD_PATH} element={<DashboardPage />}/>
@@ -49,5 +54,3 @@ const AppRoutes = () => {
 };
 
 export default AppRoutes;
-
-// <Route path="*" element={<NoPage />} />

@@ -59,8 +59,8 @@ const AssetPage = () => {
 
     return (
         <Container title='All Asset' info="A list of all the users in your account including their name, title, email and role.">
-            <div className='flex flex-1'>
-                <div className='flex-none w-56'>
+            <div className='block sm:flex flex-1'>
+                <div className='flex-1 sm:flex-none sm:w-56'>
                     <TextField name="search-field" placeholder='Search by asset type, asset name' 
                         onChangeHandler={handleChange} value={searchKeyword}/>
                 </div>
@@ -68,7 +68,7 @@ const AssetPage = () => {
                     <Button label="Create new asset" type='button' onClickHandler={() => gotoPage(PATH.ADD_ASSET_PATH)}/>
                 </div>
             </div>
-            <div className='flex flex-1 table-header'>
+            <div className='hidden sm:flex flex-1 table-header'>
                 <div className='flex-none w-3/12'>Asset Name</div>
                 <div className='flex-none w-60'>Asset Type</div>
                 <div className='flex-1 text-right'>Quantity</div>
@@ -79,14 +79,14 @@ const AssetPage = () => {
             </div>
             {filterList(assetList).length ? 
             filterList(assetList).map(item => (
-                <div className='flex flex-1 table-row' key={item.id}>
-                    <div className='flex-none w-3/12'>{item.asset_name}</div>
-                    <div className='flex-none w-60'><Chip label={item.asset_type}/></div>
-                    <div className='flex-1 text-right'>{item.quantity}</div>
-                    <div className='flex-1 text-right'>{convertToCurrency(item.cost)}</div>
-                    <div className='flex-1 text-right'>{convertToCurrency(item.currentPrice)}</div>
-                    <div className='flex-1 text-right'>{<StockIcon value={calculatePercentageDifference(item.cost, item.currentPrice)}/>}</div>
-                    <div className='flex-none w-60 text-right'>
+                <div className='block sm:flex flex-1 table-row' key={item.id}>
+                    <div className='flex-none flex sm:block w-full sm:w-3/12'><div className='mobile-table-row-label block sm:hidden'>Asset Name</div>{item.asset_name}</div>
+                    <div className='flex-none flex sm:block w-full sm:w-60'><div className='mobile-table-row-label block sm:hidden'>Asset Type</div><Chip label={item.asset_type}/></div>
+                    <div className='flex-1 flex sm:block sm:text-right'><div className='mobile-table-row-label block sm:hidden'>Quantity</div>{item.quantity}</div>
+                    <div className='flex-1 flex sm:block sm:text-right'><div className='mobile-table-row-label block sm:hidden'>Cost</div>{convertToCurrency(item.cost)}</div>
+                    <div className='flex-1 flex sm:block sm:text-right'><div className='mobile-table-row-label block sm:hidden'>Current price</div>{convertToCurrency(item.currentPrice)}</div>
+                    <div className='flex-1 flex sm:block sm:text-right'><div className='mobile-table-row-label block sm:hidden'>Percentage</div>{<StockIcon value={calculatePercentageDifference(item.cost, item.currentPrice)}/>}</div>
+                    <div className='flex sm:flex-none sm:w-60 justify-around sm:text-right sm:justify-end'>
                         <Link to={`${PATH.ADD_ASSET_PATH}/${item.id}`}>Edit</Link>&nbsp;&nbsp;|&nbsp;&nbsp; 
                         <div className='link' onClick={() => manageAssetHook.deleteAssetById(item.id || 0)}>Delete</div>&nbsp;&nbsp;|&nbsp;&nbsp; 
                         <Link to={`${PATH.VIEW_ASSET_PATH}/${item.id}`}>View</Link>

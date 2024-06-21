@@ -47,7 +47,7 @@ const ViewAssetPage = () => {
 
     return (
         <Container title='View Asset' info="A list of all the users in your account including their name, title, email and role.">
-            <div className='flex flex-1'>
+            <div className='block sm:flex flex-1'>
                 <div className='flex-1'>
                     <FormRow label="Asset name">
                         {asset?.asset_name}
@@ -59,7 +59,7 @@ const ViewAssetPage = () => {
                     </FormRow>
                 </div>
             </div>
-            <div className='flex flex-1'>
+            <div className='block sm:flex flex-1'>
                 <div className='flex-1'>
                     <FormRow label="Cost (USD) per asset">
                         {convertToCurrency(asset?.cost || 0)}
@@ -71,7 +71,7 @@ const ViewAssetPage = () => {
                     </FormRow>
                 </div>
             </div>
-            <div className='flex flex-1'>
+            <div className='block sm:flex flex-1'>
                 <div className='flex-1'>
                     <FormRow label="Current price">
                         <div className='flex flex-1'>{convertToCurrency(asset?.currentPrice || 0)}&nbsp;{<StockIcon value={calculatePercentageDifference(asset?.cost, asset?.currentPrice)}/>}</div>
@@ -83,9 +83,9 @@ const ViewAssetPage = () => {
                     </FormRow>
                 </div>
             </div>
-            <div className='flex flex-1'>
+            <div className='block sm:flex flex-1'>
                 <div className='flex-1 text-right mr-3'>
-                    <Button label="Back to listing" type='button' isSecondary onClickHandler={() => navigate(PATH.ASSET_LISTING_PATH)}/>
+                    <Button label="Back to listing" type='button' isSecondary onClickHandler={() => navigate(PATH.ASSET_LISTING_PATH)} externalClassName='mt-3 sm:mt-0'/>
                 </div>
             </div>
                     

@@ -52,7 +52,7 @@ const AddAssetPage = () => {
 
     return (
         <Container title={id ? 'Edit Asset' : 'Create new Asset'} info="A list of all the users in your account including their name, title, email and role.">
-            <div className='flex flex-1'>
+            <div className='flex-1 block sm:flex'>
                 <div className='flex-1'>
                     <FormRow label="Asset name" required>
                         <TextField name="asset_name" placeholder='Enter the asset name' value={asset?.asset_name}
@@ -66,7 +66,7 @@ const AddAssetPage = () => {
                 </div>
             </div>
             {asset?.asset_type === AssetEnum.CRYPTO && 
-                <div className='flex flex-1'>
+                <div className='block sm:flex flex-1'>
                     <div className='flex-1'>
                         <FormRow label="Cyrypto code" required>
                             <SelectTag name="asset_code" options={CryptoCodeOptions} value={asset?.asset_code} onChangeHandler={handleChange}/>
@@ -75,7 +75,7 @@ const AddAssetPage = () => {
                 </div>
             }
             {asset?.asset_type === AssetEnum.CURRENCY && 
-                <div className='flex flex-1'>
+                <div className='block sm:flex flex-1'>
                     <div className='flex-1'>
                         <FormRow label="Currency code" required>
                             <SelectTag name="asset_code" options={CurrencyOptions} value={asset?.asset_code} onChangeHandler={handleChange}/>
@@ -84,7 +84,7 @@ const AddAssetPage = () => {
                 </div>
             }
             {asset?.asset_type === AssetEnum.STOCK && 
-                <div className='flex flex-1'>
+                <div className='block sm:flex flex-1'>
                     <div className='flex-1'>
                         <FormRow label="Stock code" required>
                             <SelectTag name="asset_code" options={StockCodeOptions} value={asset?.asset_code} onChangeHandler={handleChange}/>
@@ -92,7 +92,7 @@ const AddAssetPage = () => {
                     </div>
                 </div>
             }
-            <div className='flex flex-1'>
+            <div className='block sm:flex flex-1'>
                 <div className='flex-1'>
                     <FormRow label="Cost ($USD)" required>
                         <TextField name="cost" placeholder='Enter the asset per cost' value={asset?.cost} onChangeHandler={handleChange}/>
@@ -104,16 +104,16 @@ const AddAssetPage = () => {
                     </FormRow>
                 </div>
             </div>
-            <div className='flex flex-1'>
+            <div className='block sm:flex flex-1'>
                 <div className='flex-1'>
                     <FormRow label="Details">
                         <TextArea name="details" placeholder='Enter the details' value={asset?.details} onChangeHandler={handleChange}/>
                     </FormRow>
                 </div>
             </div>
-            <div className='flex flex-1'>
+            <div className='z flex-1'>
                 <div className='flex-1 text-right mr-3'>
-                    <Button label="Back to listing" type='button' isSecondary onClickHandler={() => navigate(PATH.ASSET_LISTING_PATH)}/>
+                    <Button label="Back to listing" type='button' isSecondary onClickHandler={() => navigate(PATH.ASSET_LISTING_PATH)} externalClassName='mb-1 sm:mb-0'/>
                     <Button label={id ? "Save asset" : "Create asset"} type='button'  onClickHandler={() => manageAssetHook.saveAsset(asset)}/>
                 </div>
             </div>

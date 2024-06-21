@@ -4,7 +4,11 @@
  * @date - 12th June 2024
  */
  .left-layout {
-   width: 180px;
+   position: relative;
+ }
+ .left-layout-mobile {
+    width: 100%;
+    position: fixed;
  }
  .right-layout {
    flex: 1;

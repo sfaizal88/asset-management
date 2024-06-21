@@ -44,14 +44,12 @@
     flex-direction: column;
 }
 .pie-chart-container {
-    width: 340px;
     height: auto;
     justify-content: center;
     display: inline-flex;
     align-items: center;
 }
 .bar-chart-container {
-    width: 450px;
     height: auto;
     justify-content: center;
     display: inline-flex;

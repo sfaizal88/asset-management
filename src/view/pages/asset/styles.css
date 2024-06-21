@@ -16,13 +16,26 @@
     padding: 8px 12px;
     border-bottom: none;
     background-color: #fff;
-    display: flex;
     border: 1px solid #eff0f3;
     margin: 8px 0;
     transition: all linear 0.5s;
+    width: 100%;
 }
 .table-row:hover {
    background-color: #f9f8fa;
    border: 1px solid #f9f8fa;
    cursor: pointer;
+}
+.mobile-table-row {
+    border: 1px solid #eff0f3;
+    margin: 8px 0;
+    border-radius: 4px;
+}
+.mobile-table-row-label {
+    background: #95a5a6;
+    color: #fff;
+    width: 130px;
+    padding: 0 8px;
+    margin-right: 8px;
+    border-bottom: 1px solid #fff;
 }
