@@ -17,7 +17,7 @@ import LoginPage from '../pages/login';
 
 // ENTRY ROUTER VARIABLE DECLARE
 const EntryRoutes = () => (
-  <BrowserRouter>
+  <BrowserRouter basename="/asset-management">
     <Routes>
       <Route path={PATH.LOGIN_PATH} element={<LoginPage />}/>
       <Route path={PATH.OTHER_PATH} element={<AppRoutes />}/>
