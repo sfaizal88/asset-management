@@ -6,10 +6,6 @@
  .left-layout {
    position: relative;
  }
- .left-layout-mobile {
-    width: 100%;
-    position: fixed;
- }
  .right-layout {
    flex: 1;
    background-color: #f5f6fa;

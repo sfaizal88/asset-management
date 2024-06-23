@@ -5,7 +5,9 @@
   box-sizing: border-box;
 }
 html, body, #root {
-  height: 100vh;
+  min-height: 100%;
+  display: flex;
+  flex: 1;
 }
 body {
   margin: 0;
@@ -32,7 +34,7 @@ code {
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 664px) {
   .only-desktop {
     display: none;
   }

@@ -12,13 +12,12 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding-left: 8px;
 }
 .counter-widget-container .counter-title {
     font-size: 11px;
 }
 .counter-widget-container .counter-subtitle {
-    font-size: 17px;
+    font-size: 14px;
     font-weight: bold;
 }
 .widget-title-container {

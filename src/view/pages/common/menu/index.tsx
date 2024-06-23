@@ -54,7 +54,7 @@ const Menu = ({
     }, [currentMenu, location.pathname]);
 
     return (
-        <div className={clsx('menu-container', !showMobileMenu && 'hidden')}>
+        <div className={clsx('menu-container', !showMobileMenu && 'only-desktop')}>
             <div className='logo-container'>
                 <i className="fa fa-bolt" aria-hidden="true"></i>&nbsp;Teleskop
                 <i className="fa fa-times float-right sm:hidden pt-1" onClick={() => setShowMobileMenu(false)} aria-hidden="true"></i>

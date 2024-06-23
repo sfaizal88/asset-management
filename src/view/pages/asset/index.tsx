@@ -8,7 +8,7 @@ import {useEffect, useState} from 'react';
 import {useNavigate, Link} from 'react-router-dom';
 
 // COMMON COMPONENT
-import { Container, Loader, Chip, TextField, Button, StockIcon } from '../../atoms';
+import { Container, Loader, Chip, TextField, Button, StockIcon, ConfirmModel } from '../../atoms';
 import { EmptyScreen } from '../../molecules';
 
 // UTILS IMPORT
@@ -31,6 +31,8 @@ const AssetPage = () => {
     const [assetList, setAssetList] = useState<AssetType[]>([]);
     const [isLoading, setLoading] = useState<boolean>(true);
     const [searchKeyword, setSearchKeyword] = useState<string>('');
+    const [selectedAsset, setSelectedAsset] = useState<AssetType>({} as AssetType);
+    const [isDeleteModelOpen, setDeleteModelOpen] = useState<boolean>(false);
 
     // DECLARE NAVIGATE
     const navigate = useNavigate();
@@ -69,26 +71,26 @@ const AssetPage = () => {
                 </div>
             </div>
             <div className='hidden sm:flex flex-1 table-header'>
-                <div className='flex-none w-3/12'>Asset Name</div>
-                <div className='flex-none w-60'>Asset Type</div>
-                <div className='flex-1 text-right'>Quantity</div>
-                <div className='flex-1 text-right'>Cost</div>
-                <div className='flex-1 text-right'>Current price</div>
-                <div className='flex-1 text-right'>Percentage</div>
-                <div className='flex-none w-60 text-right'>Actions</div>
+                <div className='flex-none w-[15%]'>Asset Name</div>
+                <div className='flex-none w-[10%]'>Asset Type</div>
+                <div className='flex-none w-[15%] text-right'>Quantity</div>
+                <div className='flex-none w-[15%] text-right'>Cost</div>
+                <div className='flex-none w-[15%] text-right'>Current price</div>
+                <div className='flex-none w-[15%] text-right'>Percentage</div>
+                <div className='flex-1 text-right'>Actions</div>
             </div>
             {filterList(assetList).length ? 
             filterList(assetList).map(item => (
-                <div className='block sm:flex flex-1 table-row' key={item.id}>
-                    <div className='flex-none flex sm:block w-full sm:w-3/12'><div className='mobile-table-row-label block sm:hidden'>Asset Name</div>{item.asset_name}</div>
-                    <div className='flex-none flex sm:block w-full sm:w-60'><div className='mobile-table-row-label block sm:hidden'>Asset Type</div><Chip label={item.asset_type}/></div>
-                    <div className='flex-1 flex sm:block sm:text-right'><div className='mobile-table-row-label block sm:hidden'>Quantity</div>{item.quantity}</div>
-                    <div className='flex-1 flex sm:block sm:text-right'><div className='mobile-table-row-label block sm:hidden'>Cost</div>{convertToCurrency(item.cost)}</div>
-                    <div className='flex-1 flex sm:block sm:text-right'><div className='mobile-table-row-label block sm:hidden'>Current price</div>{convertToCurrency(item.currentPrice)}</div>
-                    <div className='flex-1 flex sm:block sm:text-right'><div className='mobile-table-row-label block sm:hidden'>Percentage</div>{<StockIcon value={calculatePercentageDifference(item.cost, item.currentPrice)}/>}</div>
-                    <div className='flex sm:flex-none sm:w-60 justify-around sm:text-right sm:justify-end'>
+                <div className='block sm:flex flex-1 table-row mobile-table-row-box' key={item.id}>
+                    <div className='flex-none sm:block w-full sm:w-[15%] mobile-table-row'><div className='mobile-table-row-label block sm:hidden'>Asset Name</div><div className='mobile-table-row-value'>{item.asset_name}</div></div>
+                    <div className='flex-none sm:block w-full sm:w-[10%] mobile-table-row'><div className='mobile-table-row-label block sm:hidden'>Asset Type</div><div className='mobile-table-row-value'><Chip label={item.asset_type}/></div></div>
+                    <div className='flex-none sm:block sm:text-right sm:w-[15%] mobile-table-row'><div className='mobile-table-row-label block sm:hidden'>Quantity</div><div className='mobile-table-row-value'>{item.quantity}</div></div>
+                    <div className='flex-none sm:block sm:text-right sm:w-[15%] mobile-table-row'><div className='mobile-table-row-label block sm:hidden'>Cost</div><div className='mobile-table-row-value'>{convertToCurrency(item.cost)}</div></div>
+                    <div className='flex-none sm:block sm:text-right sm:w-[15%] mobile-table-row'><div className='mobile-table-row-label block sm:hidden'>Current price</div><div className='mobile-table-row-value'>{convertToCurrency(item.currentPrice)}</div></div>
+                    <div className='flex-none sm:block sm:text-right sm:w-[15%] mobile-table-row'><div className='mobile-table-row-label block sm:hidden'>Percentage</div><div className='mobile-table-row-value'>{<StockIcon value={calculatePercentageDifference(item.cost, item.currentPrice)}/>}</div></div>
+                    <div className='flex-none sm:flex-1 justify-around sm:text-right sm:justify-end mobile-table-row actions-items'>
                         <Link to={`${PATH.ADD_ASSET_PATH}/${item.id}`}>Edit</Link>&nbsp;&nbsp;|&nbsp;&nbsp; 
-                        <div className='link' onClick={() => manageAssetHook.deleteAssetById(item.id || 0)}>Delete</div>&nbsp;&nbsp;|&nbsp;&nbsp; 
+                        <div className='link' onClick={() => {setSelectedAsset(item);setDeleteModelOpen(true)}}>Delete</div>&nbsp;&nbsp;|&nbsp;&nbsp; 
                         <Link to={`${PATH.VIEW_ASSET_PATH}/${item.id}`}>View</Link>
                     </div>
                 </div>)) : 
@@ -98,6 +100,12 @@ const AssetPage = () => {
                     button={<Button label="Create new asset" type='button' onClickHandler={() => gotoPage(PATH.ADD_ASSET_PATH)}/>}
                     icon={<i className="fa fa-ban" aria-hidden="true"></i>}
                 />}
+                {isDeleteModelOpen && <ConfirmModel 
+                    confirmBtnLabel='Delete' confirmBtnEvent={() => {manageAssetHook.deleteAssetById(selectedAsset.id || 0);setDeleteModelOpen(false);}}
+                    cancelBtnLabel='Cancel' cancelBtnEvent={() => setDeleteModelOpen(false)}
+                    title='Delete asset'
+                    info={`Do you want to delete the asset "${selectedAsset.asset_name}"?`}
+                    />}
         </Container>
     )
 }

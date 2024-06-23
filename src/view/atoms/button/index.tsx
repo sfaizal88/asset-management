@@ -32,7 +32,7 @@ type ButtonProps = {
   }: ButtonProps) => {
     return (
       <input type={type}
-        className={clsx(isSecondary ? 'secondary-btn' : 'primary-btn', externalClassName, 'w-full md:w-auto')}
+        className={clsx(isSecondary ? 'secondary-btn' : 'primary-btn', externalClassName, 'w-full sm:w-auto')}
         value={label}
         onClick={onClickHandler}
         disabled={disabled}/>

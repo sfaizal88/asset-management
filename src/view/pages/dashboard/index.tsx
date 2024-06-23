@@ -64,28 +64,20 @@ const DashboardPage = () => {
         <>
             <div className='page-title'>Overview 👋</div>
             <div className='page-subtitle'>Let's see an overview of your assets</div>
-            <div className='block sm:flex flex-1 space-y-2 sm:space-y-0 sm:space-x-4 mb-3'>
-                <div className='flex-1'>
-                    <CounterWidget title="Crypto" icon={<i className="fa fa-btc symbol crypto-symbol" aria-hidden="true"></i>}  total={total?.crypto}/>
-                </div>
-                <div className='flex-1'>
-                    <CounterWidget title="Stock" icon={<i className="fa fa-bar-chart symbol stock-symbol" aria-hidden="true"></i>}/>
-                </div>
-                <div className='flex-1'>
-                    <CounterWidget title="Property" icon={<i className="fa fa-home symbol property-symbol" aria-hidden="true"></i>} total={total?.property}/>
-                </div>
-                <div className='flex-1'>
-                    <CounterWidget title="Currency" icon={<i className="fa fa-usd symbol currency-symbol" aria-hidden="true"></i>} total={total?.currency}/>
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 mb-4">
+                <CounterWidget title="Crypto" icon={<i className="fa fa-btc symbol crypto-symbol" aria-hidden="true"></i>}  total={total?.crypto}/>
+                <CounterWidget title="Stock" icon={<i className="fa fa-bar-chart symbol stock-symbol" aria-hidden="true"></i>}/>
+                <CounterWidget title="Property" icon={<i className="fa fa-home symbol property-symbol" aria-hidden="true"></i>} total={total?.property}/>
+                <CounterWidget title="Currency" icon={<i className="fa fa-usd symbol currency-symbol" aria-hidden="true"></i>} total={total?.currency}/>
             </div>
-            <div className='block sm:flex flex-1 space-y-3 sm:space-y-0 sm:space-x-4 mb-3 mt-5'>
-                <div className='flex-1 chart-layout'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
+                <div className='chart-layout'>
                     <WidgetTitle title="Pie chart" subtitle='Asset details using pie chart and shown in percentage'/>
                     <div className='pie-chart-container w-full sm:w-[360px]'>
                         <Chart type="pie" data={dashboardHook.getPieChartData(total as AllAssetTotal)} options={dashboardHook.getPieChartOptions()}/>
                     </div>
                 </div>
-                <div className='flex-1 chart-layout space-y-3 sm:space-y-0 sm:space-x-4 mb-5'>
+                <div className='chart-layout space-y-3 sm:space-y-0 sm:space-x-4 mb-5'>
                     <WidgetTitle title="Bar chart" subtitle='Asset details using bar chart and shown in value'/>
                     <div className='bar-chart-container mt-12 w-full sm:w-[450px]'>
                         <Chart type="bar" data={dashboardHook.getBarChartData(total as AllAssetTotal)} options={dashboardHook.getBarChartOptions()}/>

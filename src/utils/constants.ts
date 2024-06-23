@@ -5,8 +5,12 @@
  */
 // UTILS IMPORT
 import {AssetEnum, CryptoCurrencyCodeEnum, CurrencyCodeEnum, StockCodeEnum} from './enum';
-import type {SelectOptionsType} from './types';
+import type {SelectOptionsType, LoginUser} from './types';
 
+export const LoginUserDetails: LoginUser = {
+    username: "admin",
+    password: "admin"
+}
 export const AssetTypeOptions: SelectOptionsType[] = [
     {value: AssetEnum.PROPERTY, label: 'Property'},
     {value: AssetEnum.CRYPTO, label: 'Crypto'},

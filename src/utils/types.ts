@@ -30,6 +30,11 @@ export type Total = {
     currentMarketTotal: number;
 }
 
+export type LoginUser = {
+    username: string;
+    password: string;
+}
+
 export type AllAssetTotal = {
     crypto: Total,
     currency: Total,
