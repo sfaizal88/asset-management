@@ -8,7 +8,7 @@ import {useEffect, useState} from 'react';
 import {useNavigate, Link} from 'react-router-dom';
 
 // COMMON COMPONENT
-import { Container, Loader, Chip, SearchField, Button, StockIcon, ConfirmModel } from '../../atoms';
+import { Container, Loader, Chip, SearchField, Button, StockIcon, ConfirmModel, PaginationControl } from '../../atoms';
 import { EmptyScreen } from '../../molecules';
 
 // UTILS IMPORT
@@ -28,29 +28,46 @@ import './styles.css';
 
 const AssetPage = () => {
     // DECLARE STATE
+    const [unchangedAssetList, setUnchangedAssetList] = useState<AssetType[]>([]);
     const [assetList, setAssetList] = useState<AssetType[]>([]);
     const [isLoading, setLoading] = useState<boolean>(true);
     const [searchKeyword, setSearchKeyword] = useState<string>('');
     const [selectedAsset, setSelectedAsset] = useState<AssetType>({} as AssetType);
     const [isDeleteModelOpen, setDeleteModelOpen] = useState<boolean>(false);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const itemsPerPage = 2;
+
+    // LOGIC TO CALCULATE ITEMS TO DISPLAY
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = assetList.slice(indexOfFirstItem, indexOfLastItem);
 
     // DECLARE NAVIGATE
     const navigate = useNavigate();
     const manageAssetHook = useManageAssetHook({
         setAssetList,
-        setLoading
+        setLoading,
+        setUnchangedAssetList,
     });
 
+    // LOCGIC TO CHANGE PAGE
+    const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+    // ARRAY OF PAGE NUMBER
+    const pageNumbers = Array.from({ length: Math.ceil(assetList.length / itemsPerPage) }, (_, index) => index + 1);
+
+    // GO TO SPECIFIC PAGE
     const gotoPage = (path: string) => {
         navigate(path);
     }
 
-    const filterList = (list: AssetType[]) => {
-        return list.filter(item => !searchKeyword || item.asset_name.toLowerCase().indexOf(searchKeyword.toLowerCase()) > -1 || item.asset_type.toLowerCase().indexOf(searchKeyword.toLowerCase()) > -1)
-    }
-
-    const handleChange = (event: any) => {
-        setSearchKeyword(event.target.value);
+    // HANDLE FILTER LIST
+    const handleFilterChange = (event: any) => {
+        const keyword = event.target.value.trim();
+        const output = unchangedAssetList.filter(item => !keyword || item.asset_name.toLowerCase().indexOf(keyword.toLowerCase()) > -1 || item.asset_type.toLowerCase().indexOf(keyword.toLowerCase()) > -1);
+        setCurrentPage(1);
+        setSearchKeyword(keyword);
+        setAssetList(output);
     };
 
     useEffect(() => {
@@ -64,7 +81,7 @@ const AssetPage = () => {
             <div className='block sm:flex flex-1 mb-2'>
                 <div className='flex-1 sm:flex-none sm:w-56'>
                 <SearchField name="search-field" placeholder='Search by asset type, asset name' 
-                        onChangeHandler={handleChange} value={searchKeyword}/>
+                        onChangeHandler={handleFilterChange} value={searchKeyword}/>
                 </div>
                 <div className='flex-1 text-right'>
                     <Button label="Create new asset" type='button' onClickHandler={() => gotoPage(PATH.ADD_ASSET_PATH)}/>
@@ -79,8 +96,8 @@ const AssetPage = () => {
                 <div className='flex-none w-[15%] text-right'>Percentage</div>
                 <div className='flex-1 text-right'>Actions</div>
             </div>
-            {filterList(assetList).length ? 
-            filterList(assetList).map(item => (
+            {assetList.length > 0 ? 
+            currentItems.map(item => (
                 <div className='block sm:flex flex-1 table-row mobile-table-row-box' key={`asset-list-${item.id}`}>
                     <div className='flex-none sm:block w-full sm:w-[15%] mobile-table-row'><div className='mobile-table-row-label block sm:hidden'>Asset Name</div><div className='mobile-table-row-value'>{item.asset_name}</div></div>
                     <div className='flex-none sm:block w-full sm:w-[10%] mobile-table-row'><div className='mobile-table-row-label block sm:hidden'>Asset Type</div><div className='mobile-table-row-value'><Chip label={item.asset_type}/></div></div>
@@ -105,7 +122,11 @@ const AssetPage = () => {
                     cancelBtnLabel='Cancel' cancelBtnEvent={() => setDeleteModelOpen(false)}
                     title='Delete asset'
                     info={`Do you want to delete the asset "${selectedAsset.asset_name}"?`}
-                    />}
+                />}
+                <PaginationControl
+                    dataList = {assetList}
+                    {...{pageNumbers, currentPage, itemsPerPage, setCurrentPage, paginate}}
+                />
         </Container>
     )
 }

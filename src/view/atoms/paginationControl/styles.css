@@ -1,0 +1,39 @@
+/**
+ * Pagination style file
+ * @author - Faizal
+ * @date - 23rd June 2024
+ */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    margin-top: 16px;
+}
+.page-item {
+    font-size: 11px;
+    border: 1px solid #e9e9e9;
+    width: 23px;
+    height: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+}
+.page-item-disabled, .page-item-disabled:hover {
+    color: #bdc3c7 !important;
+    cursor: no-drop  !important;
+    background-color: #fff !important;
+    border-color: #e9e9e9 !important;
+}
+.page-item:hover {
+    cursor: pointer;
+    background-color: #16a085;
+    border-color: #16a085;
+    color: #fff;
+}
+.page-active {
+    border-color: #1abc9c;
+    background-color: #1abc9c;
+    color: #fff;
+}

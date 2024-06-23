@@ -31,13 +31,14 @@ type ManageAssetHookProps = {
     setLoading: Dispatch<SetStateAction<boolean>>;
     setAssetList?: Dispatch<SetStateAction<AssetType[]>>;
     setAsset?: Dispatch<SetStateAction<AssetType>>;
-
+    setUnchangedAssetList?: Dispatch<SetStateAction<AssetType[]>>;
 }
 
 export function useManageAssetHook({
     setLoading,
     setAssetList,
     setAsset,
+    setUnchangedAssetList,
 }: ManageAssetHookProps) {
     // CUSTOM HOOK
     const assetHook = useAssetHook();
@@ -61,6 +62,7 @@ export function useManageAssetHook({
             updateCryptoData = await assetHook.getPropertyTotal(updateCryptoData.data);
             updateCryptoData = await assetHook.getStockPriceBySymbol(updateCryptoData.data);
             setAssetList?.(updateCryptoData.data);
+            setUnchangedAssetList?.(updateCryptoData.data);
         } catch (error) {
             setNotification.error();
         } finally {
