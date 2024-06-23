@@ -14,6 +14,7 @@ import { EmptyScreen } from '../../molecules';
 // UTILS IMPORT
 import type {AssetType} from '../../../utils/types';
 import {convertToCurrency, calculatePercentageDifference} from '../../../utils';
+import {ITEMS_PER_PAGE} from '../../../utils/constants';
 
 // ROUTER IMPORT
 import * as PATH from '../../routes/constants';
@@ -35,7 +36,7 @@ const AssetPage = () => {
     const [selectedAsset, setSelectedAsset] = useState<AssetType>({} as AssetType);
     const [isDeleteModelOpen, setDeleteModelOpen] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const itemsPerPage = 2;
+    const itemsPerPage = ITEMS_PER_PAGE;
 
     // LOGIC TO CALCULATE ITEMS TO DISPLAY
     const indexOfLastItem = currentPage * itemsPerPage;

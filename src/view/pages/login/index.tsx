@@ -14,7 +14,7 @@ import {FormAction} from '../../molecules';
 
 // UTILS IMPORT
 import type {LoginUser} from '../../../utils/types';
-import {LoginUserDetails} from '../../../utils/constants';
+import {LOGIN_USER_DETAILS} from '../../../utils/constants';
 import useNotification from '../../../utils/notification';
 
 // ROUTER IMPORT
@@ -45,7 +45,7 @@ const LoginPage = () => {
 
     // LOGIN FUNCTION
     const onSubmit = (formData: LoginUser) => {
-        if (formData.username === LoginUserDetails.username && formData.password === LoginUserDetails.password) {
+        if (formData.username === LOGIN_USER_DETAILS.username && formData.password === LOGIN_USER_DETAILS.password) {
             // ON SUCCESS, NAVIGATE TO DASHBOARD SCREEN
             navigate(PATH.DASHBOARD_PATH);
         } else {
