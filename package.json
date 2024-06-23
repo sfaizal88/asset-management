@@ -1,7 +1,7 @@
 {
   "name": "teleskop-app",
   "version": "0.1.0",
-  "homepage": "https://sfaizal88.github.io/teleskop-app",
+  "homepage": "https://sfaizal88.github.io/asset-management",
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
