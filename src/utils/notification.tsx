@@ -16,7 +16,7 @@ import {NotificationEnum} from './enum';
 import {NotificationContext} from '../context/notificationContext';
 
 function useNotification() {
-    const { notification, setNotification } = useContext(NotificationContext);
+    const { notification, setNotification } = useContext(NotificationContext);// eslint-disable-line @typescript-eslint/no-unused-vars
 
     const error = (message: unknown = formValidationMessages.error) => {
         setNotification({type: NotificationEnum.error, message: message as string, isOpen: true});

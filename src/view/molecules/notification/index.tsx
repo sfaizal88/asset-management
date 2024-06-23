@@ -34,7 +34,7 @@ const Notification = ({
         if (isOpen) {
             setTimeout(() => setNotification({message: '', isOpen: false, type}), 7000);
         }
-    }, [isOpen])
+    }, [isOpen])// eslint-disable-line react-hooks/exhaustive-deps
     
     return (
         <div className={clsx('notification-container', isOpen && 'show-notification')}>

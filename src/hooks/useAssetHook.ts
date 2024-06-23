@@ -8,15 +8,18 @@
 // UTILS IMPORT
 import type {AssetType, Total} from '../utils/types';
 import {AssetEnum} from '../utils/enum';
+import useNotification from '../utils/notification';
 
 export function useAssetHook() {
+    // NOTIFICATION
+    const setNotification = useNotification();
 
     const getCryptoPriceBySymbol = async (data: AssetType[]) => {
         const price: Total = {
             currentAssetTotal: 0, currentMarketTotal: 0
         }
         try {
-            /* const symbol = data.filter(item => item.asset_type === AssetEnum.CRYPTO).map(item => item.asset_code).join(",");
+            const symbol = data.filter(item => item.asset_type === AssetEnum.CRYPTO).map(item => item.asset_code).join(",");
             if (symbol) {
                 const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${symbol}&vs_currencies=usd`);
                 if (!response.ok) {
@@ -31,9 +34,9 @@ export function useAssetHook() {
                     }
                     return item;
                 });
-            } */
+            }
         } catch (error: any) {
-            console.log(error.message);
+            setNotification.error("Something wrong with crypto market value. Please try again later.");
         }
         return {
             data,
@@ -70,7 +73,7 @@ export function useAssetHook() {
                 });
             } */
         } catch (error: any) {
-            console.log(error.message);
+            setNotification.error("Something wrong with stock market value. Please try again later.");
         }
         return {
             data,
@@ -83,7 +86,7 @@ export function useAssetHook() {
             currentAssetTotal: 0, currentMarketTotal: 0
         }
         try {
-            /* const response = await fetch(`https://v6.exchangerate-api.com/v6/065842ad438a14f76ce0fb6f/latest/USD`);
+            const response = await fetch(`https://v6.exchangerate-api.com/v6/065842ad438a14f76ce0fb6f/latest/USD`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -95,9 +98,9 @@ export function useAssetHook() {
                     price.currentMarketTotal += Number(item.currentPrice) * Number(item.quantity);
                 }
                 return item;
-            }); */
+            });
         } catch (error: any) {
-            console.log(error.message);
+            setNotification.error("Something wrong with currency market value. Please try again later.");
         }
         return {
             data,
@@ -118,7 +121,7 @@ export function useAssetHook() {
                 return item;
             });
         } catch (error: any) {
-            console.log(error.message);
+            setNotification.error("Something wrong with property market value. please try again later.");
         }
         return {
             data,

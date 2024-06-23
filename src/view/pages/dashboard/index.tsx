@@ -13,6 +13,7 @@ import { CounterWidget, WidgetTitle, Loader } from '../../atoms';
 
 // UTILS
 import type {AllAssetTotal} from '../../../utils/types';
+import useNotification from '../../../utils/notification';
 
 // CUSTOME HOOKS
 import { useDashboardHook } from './useDashboardHook';
@@ -25,6 +26,9 @@ import {GET_ALL_ASSETS} from '../../../api/constants';
 import './styles.css';
 
 const DashboardPage = () => {
+    // NOTIFICATION
+    const setNotification = useNotification();
+
     // DECLARE STATE
     const [total, setTotal] = useState<AllAssetTotal>();
     const [isLoading, setLoading] = useState<boolean>(true);
@@ -48,7 +52,7 @@ const DashboardPage = () => {
             })
 
         } catch (error) {
-            console.log("Error")
+            setNotification.error();
         } finally {
             setLoading(false);
         }

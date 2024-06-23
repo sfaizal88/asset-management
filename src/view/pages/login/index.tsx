@@ -4,8 +4,9 @@
  * @date - 19th June 2024
  */
 // GENERIC IMPORT
-import {useState} from 'react';
+import {yupResolver} from '@hookform/resolvers/yup';
 import {useNavigate} from 'react-router-dom';
+import {useForm} from 'react-hook-form';
 
 // COMMON COMPONENTS
 import {TextField} from '../../atoms';
@@ -22,34 +23,34 @@ import * as PATH from '../../routes/constants';
 // IMAGE IMPORT
 import background from '../../../assests/icons/wave.svg';
 
+// LOGIN IMPORT
+import schema from './schema';
+
 // STYLE IMPORT
 import './styles.css';
 
 const LoginPage = () => {
-    // DECLARE STATE
-    const [loginUser, setLoginUser] = useState<LoginUser>({} as LoginUser);
-
     // DECLARE NAVIGATE
     const navigate = useNavigate();
 
     // NOTIFICATION
     const setNotification = useNotification();
 
-    const handleChange = (event: any) => {
-        setLoginUser({...loginUser, [event.target.name]: event.target.value?.trim()});
-    };
+    // REACT HOOK FORM DECLARE
+    const {control, handleSubmit, register, formState: { errors }, watch} = useForm<LoginUser>({
+        mode: 'onChange',
+        resolver: yupResolver(schema),
+    });
+    const formWatchData = watch();
 
     // LOGIN FUNCTION
-    const handleSubmit = () => {
-        console.log(loginUser);
-        console.log(LoginUserDetails);
-        if (loginUser.username === LoginUserDetails.username && loginUser.password === LoginUserDetails.password) {
+    const onSubmit = (formData: LoginUser) => {
+        if (formData.username === LoginUserDetails.username && formData.password === LoginUserDetails.password) {
             // ON SUCCESS, NAVIGATE TO DASHBOARD SCREEN
             navigate(PATH.DASHBOARD_PATH);
         } else {
             setNotification.error("Either username or password might be invalid.")
         }
-        
     }
     return (
         <div className="page-container" style={{ background: `url(${background}) no-repeat 0 100%` }}>
@@ -60,23 +61,29 @@ const LoginPage = () => {
                     id="username"
                     name="username"
                     placeholder="Enter username"
-                    value={loginUser.username}
-                    onChangeHandler={handleChange}
+                    register={register}
+                    control={control}
+                    errors={errors?.username}
+                    externalClassName='mb-2'
+                    value={formWatchData.username}
                 />
                 <TextField
                     type='password'
                     id="password"
                     name="password"
                     placeholder="Enter password"
-                    value={loginUser.password}
-                    onChangeHandler={handleChange}
+                    register={register}
+                    control={control}
+                    errors={errors?.password}
+                    externalClassName='mb-2'
+                    value={formWatchData.password}
                 />
                 <FormAction
                     isFullWidth
                     showSubmit
                     submitBtnType={'button'}
                     submitLabel='Login'
-                    onSubmit={handleSubmit}
+                    onSubmit={handleSubmit(onSubmit)}
                 />
             </div>
         </div>

@@ -6,6 +6,8 @@
  * 
  */
 // GENERIC IMPORT
+import clsx from 'clsx';
+import {Controller} from 'react-hook-form';
 
 // UTILS IMPORT
 import type {SelectOptionsType} from '../../../utils/types';
@@ -15,22 +17,43 @@ import './styles.css';
 
 type SelectTagProps = {
     options: SelectOptionsType[];
-    name?: string;
+    name: string;
+    id?: string;
     value?: string | number;
-    onChangeHandler?: (val?: any) =>  void;
+    register?: any;
+    control?: any;
+    errors?: any;
 }
 
 // SELECT COMPONENT DECLARE
 const SelectTag = ({
     options,
     name,
+    id,
     value = '',
-    onChangeHandler,
+    control,
+    errors,
+    register,
 }: SelectTagProps) => {
     return (
-        <select id={name} name={name} className='select-field' value={value} {...(onChangeHandler && { onChange: onChangeHandler })}>
-            {options.map(item => <option value={item.value} key={item.value}>{item.label}</option>)}
-        </select>
+        <Controller
+            control={control}
+            name={name}
+            defaultValue={value}
+            render={() => (
+                <>
+                    <select 
+                        {...register(name)} 
+                        id={id || name} 
+                        name={name} 
+                        value={value}
+                        className={clsx('select-field', errors?.message && 'error-field')}>
+                        {options.map(item => <option value={item.value} key={`select-${item.value}`}>{item.label}</option>)}
+                    </select>
+                    <div className='error-box'>{errors?.message}</div>
+                </>
+            )}
+        /> 
     )
 }
 

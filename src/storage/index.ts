@@ -18,18 +18,15 @@ const getAssetData = () => {
 
 export const fetchAllAsset = () => {
     let dataList = getAssetData();
-    console.log("Before list data: ", dataList);
     if (!dataList.length) {
         dataList = assestDataList;
         localStorage.setItem("data", JSON.stringify(assestDataList))
     }
-    console.log("list data: ", dataList);
     return dataList;
 }
 
 export const addNewAsset = (newData: AssetType) => {
     let dataList = [...getAssetData(), {...newData, id: generateUniqueId()}];
-    console.log("add data: ", dataList);
     localStorage.setItem("data", JSON.stringify(dataList))
 }
 

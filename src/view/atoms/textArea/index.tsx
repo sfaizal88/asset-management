@@ -6,6 +6,8 @@
  * 
  */
 // GENERIC IMPORT
+import clsx from 'clsx';
+import {Controller} from 'react-hook-form';
 
 // STYLE IMPORT
 import './styles.css';
@@ -16,7 +18,9 @@ type TextFieldProps = {
     placeholder?: string;
     rows?: number
     value?: string | number;
-    onChangeHandler?: (val?: any) =>  void;
+    register?: any;
+    control?: any;
+    errors?: any;
 }
 
 // TEXTFIELD COMPONENT DECLARE
@@ -26,12 +30,28 @@ const TextField = ({
     placeholder = '',
     rows = 4,
     value = '',
-    onChangeHandler
+    control,
+    errors,
+    register,
 }: TextFieldProps) => {
     return (
-        <textarea placeholder={placeholder} 
-            name={name} id={id || name} value={value}
-            className='input-field' rows={rows} {...(onChangeHandler && { onChange: onChangeHandler })}></textarea>
+        <Controller
+            control={control}
+            name={name}
+            render={() => (
+                <>
+                <textarea 
+                    {...register(name)} 
+                    placeholder={placeholder} 
+                    name={name} 
+                    id={id || name}
+                    className={clsx('input-field', errors?.message && 'error-field')}
+                    rows={rows}
+                ></textarea>
+                <div className='error-box'>{errors?.message}</div>
+            </>
+            )}
+        /> 
     )
 }
 

@@ -62,7 +62,7 @@ export function useManageAssetHook({
             updateCryptoData = await assetHook.getStockPriceBySymbol(updateCryptoData.data);
             setAssetList?.(updateCryptoData.data);
         } catch (error) {
-            console.log("Error")
+            setNotification.error();
         } finally {
             setLoading(false);
         }
@@ -85,11 +85,9 @@ export function useManageAssetHook({
                 navigate(PATH.ASSET_LISTING_PATH);
             }*/
             if (data?.id) {
-                console.log("Edit data: ");
                 Storage.editAssetById(data);
                 setNotification.success(formValidationMessages.assetUpdated);
             } else {
-                console.log("Create data: ");
                 Storage.addNewAsset(data);
                 setNotification.success(formValidationMessages.assetCreated);
             }
@@ -120,7 +118,7 @@ export function useManageAssetHook({
             }
             setAsset?.(result);
         } catch (error) {
-            console.log("Error")
+            setNotification.error();
         } finally {
             setLoading(false);
         }
@@ -135,7 +133,6 @@ export function useManageAssetHook({
             setNotification.success(formValidationMessages.assetRemoved);
             navigate(PATH.ASSET_LISTING_PATH);
         } catch (error) {
-            console.log("Error")
             setNotification.error();
         } finally {
             setLoading(false);

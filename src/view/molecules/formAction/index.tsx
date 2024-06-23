@@ -36,9 +36,10 @@ const FormAction = ({
     cancelLabel = "Cancel",
     onCancel,
     isFullWidth = false,
+    externalClasses,
 }: FormActionProps) => {
     return (
-        <div className="formActionContainer">    
+        <div className={clsx("formActionContainer", externalClasses)}>    
             {onCancel && (
                 <Button label={cancelLabel} type="button" 
                     {...(onSubmit && { onClickHandler: onCancel })} isSecondary/>

@@ -6,7 +6,6 @@
  * 
  */
 // GENERIC IMPORT
-import clsx from 'clsx';
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 

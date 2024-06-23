@@ -8,7 +8,7 @@ import {useEffect, useState} from 'react';
 import {useNavigate, Link} from 'react-router-dom';
 
 // COMMON COMPONENT
-import { Container, Loader, Chip, TextField, Button, StockIcon, ConfirmModel } from '../../atoms';
+import { Container, Loader, Chip, SearchField, Button, StockIcon, ConfirmModel } from '../../atoms';
 import { EmptyScreen } from '../../molecules';
 
 // UTILS IMPORT
@@ -61,9 +61,9 @@ const AssetPage = () => {
 
     return (
         <Container title='All Asset' info="A list of all the users in your account including their name, title, email and role.">
-            <div className='block sm:flex flex-1'>
+            <div className='block sm:flex flex-1 mb-2'>
                 <div className='flex-1 sm:flex-none sm:w-56'>
-                    <TextField name="search-field" placeholder='Search by asset type, asset name' 
+                <SearchField name="search-field" placeholder='Search by asset type, asset name' 
                         onChangeHandler={handleChange} value={searchKeyword}/>
                 </div>
                 <div className='flex-1 text-right'>
@@ -81,7 +81,7 @@ const AssetPage = () => {
             </div>
             {filterList(assetList).length ? 
             filterList(assetList).map(item => (
-                <div className='block sm:flex flex-1 table-row mobile-table-row-box' key={item.id}>
+                <div className='block sm:flex flex-1 table-row mobile-table-row-box' key={`asset-list-${item.id}`}>
                     <div className='flex-none sm:block w-full sm:w-[15%] mobile-table-row'><div className='mobile-table-row-label block sm:hidden'>Asset Name</div><div className='mobile-table-row-value'>{item.asset_name}</div></div>
                     <div className='flex-none sm:block w-full sm:w-[10%] mobile-table-row'><div className='mobile-table-row-label block sm:hidden'>Asset Type</div><div className='mobile-table-row-value'><Chip label={item.asset_type}/></div></div>
                     <div className='flex-none sm:block sm:text-right sm:w-[15%] mobile-table-row'><div className='mobile-table-row-label block sm:hidden'>Quantity</div><div className='mobile-table-row-value'>{item.quantity}</div></div>
