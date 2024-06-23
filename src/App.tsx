@@ -17,7 +17,7 @@ import {NotificationContextType} from './utils/types';
 import {NotificationEnum} from './utils/enum';
 
 // STYLE IMPORT
-import './app.css';
+import './App.css';
 
 // ROUTER IMPORT
 import EntryRoutes from './view/routes/entryRoutes';

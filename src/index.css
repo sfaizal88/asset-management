@@ -32,8 +32,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-
 @media only screen and (max-width: 640px) {
   .only-desktop {
     display: none;
