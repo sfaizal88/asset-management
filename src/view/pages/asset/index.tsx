@@ -114,7 +114,7 @@ const AssetPage = () => {
                 </div>)) : 
                 <EmptyScreen
                     title="No asset found"
-                    subtitle="Please add new asset by clicking add new asset button"
+                    subtitle="Please add new asset by clicking create new asset button"
                     button={<Button label="Create new asset" type='button' onClickHandler={() => gotoPage(PATH.ADD_ASSET_PATH)}/>}
                     icon={<i className="fa fa-ban" aria-hidden="true"></i>}
                 />}
