@@ -37,7 +37,7 @@ const Notification = ({
     }, [isOpen])// eslint-disable-line react-hooks/exhaustive-deps
     
     return (
-        <div className={clsx('notification-container', isOpen && 'show-notification')}>
+        <div className={clsx('notify-container', isOpen && 'show-notification')}>
             <Alert type={NotificationEnum.error === type ? NotificationEnum.error: NotificationEnum.success} message={message}/>
         </div>  
     )
