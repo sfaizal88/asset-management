@@ -26,14 +26,14 @@ export const fetchAllAsset = () => {
 }
 
 export const addNewAsset = (newData: AssetType) => {
-    let dataList = [...getAssetData(), {...newData, id: generateUniqueId()}];
+    let dataList = [{...newData, id: generateUniqueId()}, ...getAssetData()];
     localStorage.setItem("data", JSON.stringify(dataList))
 }
 
 export const editAssetById = (updatedData: AssetType) => {
-    const dataList = getAssetData().map(item => {
-        return (item.id === updatedData.id) ? updatedData : item;
-    });
+    const selectedItem = getAssetData().find(item => item.id === updatedData.id);
+    const filteredList = getAssetData().filter(item => item.id !== updatedData.id);
+    const dataList = [{...selectedItem, ...updatedData}, ...filteredList];
     localStorage.setItem("data", JSON.stringify(dataList))
 }
 
