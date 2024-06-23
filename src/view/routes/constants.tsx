@@ -6,10 +6,10 @@
  * 
  */
 // ROUTE URL
-export const LOGIN_PATH = '/asset-management';
-export const DASHBOARD_PATH = '/asset-management/dashboard';
-export const ASSET_LISTING_PATH = '/asset-management/assestList';
-export const ADD_ASSET_PATH = '/asset-management/addAsset';
-export const VIEW_ASSET_PATH = '/asset-management/viewAsset';
+export const LOGIN_PATH = '/';
+export const DASHBOARD_PATH = '/dashboard';
+export const ASSET_LISTING_PATH = '/assestList';
+export const ADD_ASSET_PATH = '/addAsset';
+export const VIEW_ASSET_PATH = '/viewAsset';
 
 export const OTHER_PATH = '*';
