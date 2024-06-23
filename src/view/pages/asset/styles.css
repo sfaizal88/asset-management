@@ -37,6 +37,7 @@
         border-radius: 8px;
         padding: 0;
         overflow: hidden;
+        font-size: 11px;
     }
     .mobile-table-row {
         display: flex;
@@ -46,16 +47,16 @@
         width: 100%
     }
     .mobile-table-row-label {
-        background: #95a5a6;
-        color: #fff;
+        background: #dfdfdf;
+        color: #3e3e3e;
         width: 40%;
-        padding: 4px 8px;
+        padding: 6px 8px;
         border-bottom: 1px solid #fff;
         display: flex;
         align-items: center;
     }
     .mobile-table-row-value {
-        padding: 4px 8px;
+        padding: 6px 8px;
         display: flex;
         align-items: center;
         border-bottom: 1px solid #ecf0f1;
@@ -65,6 +66,9 @@
         background-color: #3498db;
         color: #fff;
         border-radius: 0 0 4px 4px;
+        justify-content: space-evenly;
+        padding: 6px 0;
+        font-weight: bold;
     }
     .actions-items a, .actions-items .link {
         color: #fff;

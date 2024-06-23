@@ -85,7 +85,7 @@ const AssetPage = () => {
                         onChangeHandler={handleFilterChange} value={searchKeyword}/>
                 </div>
                 <div className='flex-1 text-right'>
-                    <Button label="Create new asset" type='button' onClickHandler={() => gotoPage(PATH.ADD_ASSET_PATH)}/>
+                    <Button label="Create new asset" type='button' onClickHandler={() => gotoPage(PATH.ADD_ASSET_PATH)} externalClassName='mt-2 sm:mt-0'/>
                 </div>
             </div>
             <div className='hidden sm:flex flex-1 table-header'>
