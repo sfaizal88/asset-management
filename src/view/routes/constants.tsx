@@ -6,7 +6,7 @@
  * 
  */
 // ROUTE URL
-export const LOGIN_PATH = '/login';
+export const LOGIN_PATH = '/';
 export const DASHBOARD_PATH = '/dashboard';
 export const ASSET_LISTING_PATH = '/assestList';
 export const ADD_ASSET_PATH = '/addAsset';
