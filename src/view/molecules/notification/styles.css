@@ -10,7 +10,7 @@
     max-width: 90%;
 }
 .show-notification {
-    display: flex;
+    display: flex !important;
 }
 .notify-container {
     position: fixed;
