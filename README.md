@@ -1,6 +1,26 @@
-# Getting Started with Create React App
+# Teleskop - mini asset management
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
+
+The Mini Asset Management project is a user-friendly web application designed to help users manage a portfolio of assets, including cryptocurrencies. This React.js-based application provides a seamless experience for users to add, edit, and delete assets from their portfolio, track real-time market prices, and visualize the performance of their assets over time. With a responsive design, intuitive interface, and robust functionality, this project aims to be a valuable tool for both casual investors and serious portfolio managers.
+
+## Feature
+
+- Add New Assets.
+- Edit Existing Assets.
+- Delete Assets.
+- Display Assets in Table View.
+- Real-Time Market Price Updates.
+- Show Percentage Change in Asset Value.
+- Interactive Performance Charts.
+- Search Functionality.
+- User-Friendly Interface.
+- Responsive Design - Desktop, Ipad and mobile support
+
+## User Credentials
+
+- Username: admin
+- Password: admin
 
 ## Available Scripts
 
@@ -14,33 +34,16 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+### `npm run deploy`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Runs the frontend code deployment in github server and you can visit the github page to check the output [https://github.com/sfaizal88/asset-management/settings/pages](https://github.com/sfaizal88/asset-management/settings/pages) to check whether its deployed. You can check the output directly at the website link [https://sfaizal88.github.io/asset-management//](https://sfaizal88.github.io/asset-management//)
 
-### `npm run build`
+## Planned feature
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Adding of other asset like mutual Bond, Commodities, Mutual Funds.
+- Login JWT token.
+- User session implementation.
+- Download the asset list and details of asset.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Screenshots
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
