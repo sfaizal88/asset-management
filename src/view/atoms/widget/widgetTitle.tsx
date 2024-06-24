@@ -8,6 +8,7 @@
 // STYLE IMPORT
 import './styles.css';
 
+// COMPONENT PROPS
 type CounterTitleProps = {
     title: string;
     subtitle: string;

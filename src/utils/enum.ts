@@ -18,6 +18,7 @@ export enum AssetEnum {
     CURRENCY = 'CURRENCY'
 }
 
+// CRYTO CURRENCY CODE TYPE
 export enum CryptoCurrencyCodeEnum {
     BITCOIN = 'bitcoin',
     ETHEREUM = 'ethereum',
@@ -31,6 +32,7 @@ export enum CryptoCurrencyCodeEnum {
     POLKADOT = 'polkadot'
 };
 
+// STOCK TYPE
 export enum StockCodeEnum {
     AAPL = "AAPL",
     MSFT = "MSFT",
@@ -54,6 +56,7 @@ export enum StockCodeEnum {
     CRM = "CRM"
 }
 
+// CURRENCY CODE TYPE
 export enum CurrencyCodeEnum {
     USD = "USD",
     AED = "AED",

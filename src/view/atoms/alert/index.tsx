@@ -14,6 +14,7 @@ import {NotificationEnum} from '../../../utils/enum';
 // STYLE IMPORT
 import './styles.css';
 
+// COMPONENT PROPS
 type AlertProps = {
   type: NotificationEnum;
   message: string;

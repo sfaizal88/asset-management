@@ -11,6 +11,7 @@ import clsx from 'clsx';
 // STYLE IMPORT
 import './styles.css';
 
+// COMPONENT PROPS
 type PaginationControlProps = {
   dataList: any[];
   pageNumbers: number[];

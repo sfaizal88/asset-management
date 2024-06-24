@@ -1,6 +1,6 @@
 /**
  * 
- * Confirm model  component
+ * Confirm model component
  * @author - Faizal
  * @date - 23rd June 2024
  * 
@@ -11,6 +11,7 @@ import {Button} from '../';
 // STYLE IMPORT
 import './styles.css';
 
+// COMPONENT PROPS
 type ConfirmModelProps = {
     title: string;
     info: string;

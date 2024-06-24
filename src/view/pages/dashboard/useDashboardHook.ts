@@ -10,6 +10,7 @@ import type {AllAssetTotal} from '../../../utils/types';
 
 export function useDashboardHook() {
 
+    // PIE CHART CODE
     const getPieChartData = (totalData: AllAssetTotal) => {
         const pieChartData = {
             labels: ['Crypto', 'Stock', 'Property', 'Currency'],
@@ -17,10 +18,10 @@ export function useDashboardHook() {
             {
                 label: '# of Asset',
                 data: [
-                    totalData.crypto.currentMarketTotal, 
+                    totalData?.crypto.currentMarketTotal || 0, 
                     19, 
-                    totalData.property.currentMarketTotal, 
-                    totalData.currency.currentMarketTotal
+                    totalData?.property.currentMarketTotal || 0, 
+                    totalData?.currency.currentMarketTotal || 0
                   ],
                 backgroundColor: [
                     'rgba(255, 206, 86, 0.6)',
@@ -35,6 +36,7 @@ export function useDashboardHook() {
         return pieChartData;
     }
 
+    // PIE CHART OPTIONS FOR THE COMPONENT
     const getPieChartOptions = () => {
         return {
             responsive: true,
@@ -47,6 +49,7 @@ export function useDashboardHook() {
         }
     }
 
+    // BAR CHART OPTION FOR THE COMPONENT
     const getBarChartOptions = () => {
         return {
             responsive: true,
@@ -73,16 +76,17 @@ export function useDashboardHook() {
         }
     }
 
+    // BAR CHART CODE
     const getBarChartData = (totalData: AllAssetTotal) => {
         const barChartData = {
             labels: ['Crypto', 'Stock', 'Property', 'Currency'],
             datasets: [{
               label: 'All the Asset',
               data: [
-                totalData.crypto.currentMarketTotal, 
+                totalData?.crypto.currentMarketTotal || 0, 
                 19, 
-                totalData.property.currentMarketTotal, 
-                totalData.currency.currentMarketTotal
+                totalData?.property.currentMarketTotal || 0, 
+                totalData?.currency.currentMarketTotal || 0
               ],
               backgroundColor: [
                 'rgba(255, 206, 86, 0.6)',

@@ -5,7 +5,6 @@
  * @date - 19th June 2024
  * 
  */
-
 // ICON IMPORT
 import LoaderIcon from '../../../assests/icons/loader.svg';
 

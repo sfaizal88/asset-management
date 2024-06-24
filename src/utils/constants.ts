@@ -7,13 +7,19 @@
 import {AssetEnum, CryptoCurrencyCodeEnum, CurrencyCodeEnum, StockCodeEnum} from './enum';
 import type {SelectOptionsType, LoginUser} from './types';
 
+// LOGIN DETAILS
 export const LOGIN_USER_DETAILS: LoginUser = {
     username: "admin",
     password: "admin"
 }
 
+// PAGINATION ITEM PER PAGE
 export const ITEMS_PER_PAGE = 10;
 
+// DEFAULT CURRENCY
+export const DEFAULT_CURRENCY: string = 'USD';
+
+// ASET TYPE FOR SELECT TAG
 export const AssetTypeOptions: SelectOptionsType[] = [
     {value: AssetEnum.PROPERTY, label: 'Property'},
     {value: AssetEnum.CRYPTO, label: 'Crypto'},
@@ -21,6 +27,7 @@ export const AssetTypeOptions: SelectOptionsType[] = [
     {value: AssetEnum.CURRENCY, label: 'Currency'}
 ]
 
+// CRYPTO CURRENCY CODE
 export const CryptoCodeOptions: SelectOptionsType[] = [
     { value: CryptoCurrencyCodeEnum.BITCOIN, label: 'Bitcoin' },
     { value: CryptoCurrencyCodeEnum.ETHEREUM, label: 'Ethereum' },
@@ -34,6 +41,7 @@ export const CryptoCodeOptions: SelectOptionsType[] = [
     { value: CryptoCurrencyCodeEnum.POLKADOT, label: 'Polkadot' }
 ]
 
+// STOCK CODE
 export const StockCodeOptions: SelectOptionsType[] = [
     { value: StockCodeEnum.AAPL, label: 'Apple Inc.' },
     { value: StockCodeEnum.MSFT, label: 'Microsoft Corporation' },
@@ -57,6 +65,7 @@ export const StockCodeOptions: SelectOptionsType[] = [
     { value: StockCodeEnum.CRM, label: 'Salesforce.com, Inc.' }
 ];
 
+// ALL CURRENCY CODE
 export const CurrencyOptions: SelectOptionsType[] = [
     { value: CurrencyCodeEnum.USD, label: 'USD - US Dollar' },
     { value: CurrencyCodeEnum.AED, label: 'AED - United Arab Emirates Dirham' },
@@ -221,5 +230,3 @@ export const CurrencyOptions: SelectOptionsType[] = [
     { value: CurrencyCodeEnum.ZMW, label: 'ZMW - Zambian Kwacha' },
     { value: CurrencyCodeEnum.ZWL, label: 'ZWL - Zimbabwean Dollar' }
   ];
-
-export const DefaultCurrency: string = 'USD';

@@ -12,6 +12,7 @@ import {Controller} from 'react-hook-form';
 // STYLE IMPORT
 import './styles.css';
 
+// COMPONENT PROPS
 type TextFieldProps = {
     name: string;
     id?: string;

@@ -18,6 +18,7 @@ import type {Total} from '../../../utils/types';
 // STYLE IMPORT
 import './styles.css';
 
+// COMPONENT PROPS
 type CounterWidgetProps = {
     title: string;
     icon: ReactElement;

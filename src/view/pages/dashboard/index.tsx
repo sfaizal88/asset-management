@@ -19,8 +19,11 @@ import useNotification from '../../../utils/notification';
 import { useDashboardHook } from './useDashboardHook';
 import { useAssetHook } from '../../../hooks/useAssetHook';
 
+// STORAGE
+import * as Storage from '../../../storage';
+
 // API IMPORT
-import {GET_ALL_ASSETS} from '../../../api/constants';
+// import {GET_ALL_ASSETS} from '../../../api/constants';
 
 // STYLE IMPORT
 import './styles.css';
@@ -37,13 +40,15 @@ const DashboardPage = () => {
     const dashboardHook = useDashboardHook();
     const assetHook = useAssetHook();
 
+    // GET ASSET LIST
     const getAssetList = async () => {
         try {
-            const response = await fetch(GET_ALL_ASSETS);
+            /*const response = await fetch(GET_ALL_ASSETS);
             if (!response.ok) {
                 throw new Error("Server error");
             }
-            const result = await response.json();
+            const result = await response.json();*/
+            const result = Storage.fetchAllAsset();
             setTotal({
                 crypto: (await assetHook.getCryptoPriceBySymbol(result)).total,
                 currency: (await assetHook.getCurrencyByCode(result)).total,

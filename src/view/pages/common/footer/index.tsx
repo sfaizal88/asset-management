@@ -1,16 +1,18 @@
 /**
- * Header component
+ * Footer component
  * @author - Faizal
  * @date - 19th June 2024
  */
-// GENERIC IMPORT
-import React from 'react';
-
 // STYLE IMPORT
 import './styles.css';
 
-const Footer = () => (
-    <footer>Copyright © 2024 Teleskop Inc.</footer>
-)
+const Footer = () => {
+    // CURRENT YEAR
+    const currentYear = new Date().getFullYear();
+    
+    return (
+        <footer>Copyright © {currentYear} Teleskop Inc.</footer>
+    )
+};
 
 export default Footer;

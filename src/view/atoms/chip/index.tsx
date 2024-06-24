@@ -14,6 +14,7 @@ import {AssetEnum} from '../../../utils/enum';
 // STYLE IMPORT
 import './styles.css';
 
+// COMPONENT PROPS
 type ChipProps = {
   label: AssetEnum;
 }

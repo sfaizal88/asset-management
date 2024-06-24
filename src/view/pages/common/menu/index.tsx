@@ -38,6 +38,7 @@ const Menu = ({
         navigate(path);
     }
 
+    // CHECK WHETHER MENU ACTIVE OR NOT
     const isMenuActive = (paths: string[]) => {
         if (paths.length) {
             return paths.some(item => {

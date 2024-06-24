@@ -15,6 +15,7 @@ import type {SelectOptionsType} from '../../../utils/types';
 // STYLE IMPORT
 import './styles.css';
 
+// COMPONENT PROPS
 type SelectTagProps = {
     options: SelectOptionsType[];
     name: string;
