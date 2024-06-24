@@ -4,6 +4,7 @@
  * @date - 19th June 2024
  */
 // GENERIC IMPORT
+import React from 'react';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useNavigate} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
@@ -52,6 +53,13 @@ const LoginPage = () => {
             setNotification.error("Either username or password might be invalid.")
         }
     }
+
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            handleSubmit(onSubmit)()
+        }
+    };
+
     return (
         <div className="page-container" style={{ background: `url(${background}) no-repeat 0 100%` }}>
             <div className="login-container">
@@ -66,6 +74,7 @@ const LoginPage = () => {
                     errors={errors?.username}
                     externalClassName='mb-2'
                     value={formWatchData.username}
+                    handlerKeyDown={handleKeyPress}
                 />
                 <TextField
                     type='password'
@@ -77,6 +86,7 @@ const LoginPage = () => {
                     errors={errors?.password}
                     externalClassName='mb-2'
                     value={formWatchData.password}
+                    handlerKeyDown={handleKeyPress}
                 />
                 <FormAction
                     isFullWidth

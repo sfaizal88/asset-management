@@ -23,6 +23,7 @@ type TextFieldProps = {
     control?: any;
     errors?: any;
     onChangeHandler?: (val?: any) =>  void;
+    handlerKeyDown?: (event: any) =>  void;
     externalClassName?: string;
 }
 
@@ -37,7 +38,8 @@ const TextField = ({
     errors,
     register,
     onChangeHandler,
-    externalClassName
+    externalClassName,
+    handlerKeyDown,
 }: TextFieldProps) => {
     return (
         <div className={externalClassName}>
@@ -57,6 +59,11 @@ const TextField = ({
                             field.onChange(e);
                             if (onChangeHandler) {
                                 onChangeHandler(e.target.value);
+                            }
+                        }}
+                        onKeyDown={(e) => {
+                            if (handlerKeyDown) {
+                                handlerKeyDown?.(e)
                             }
                         }}
                         className={clsx('input-field', errors?.message && 'error-field')}

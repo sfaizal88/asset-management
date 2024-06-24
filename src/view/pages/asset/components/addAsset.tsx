@@ -5,7 +5,7 @@
  */
 // GENERIC IMPORT
 import {yupResolver} from '@hookform/resolvers/yup';
-import {useState} from 'react';
+import React, {useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 
@@ -61,6 +61,12 @@ const AddAssetPage = () => {
         manageAssetHook.saveAsset(formData)
     }
 
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            handleSubmit(onSubmit)()
+        }
+    };
+
     if (isLoading) return <Loader/>
 
     return (
@@ -75,7 +81,8 @@ const AddAssetPage = () => {
                             value={formWatchData.asset_name}
                             register={register}
                             control={control}
-                            errors={errors?.asset_name}/>
+                            errors={errors?.asset_name}
+                            handlerKeyDown={handleKeyPress}/>
                     </FormRow>
                 </div>
                 <div className='flex-1'>
@@ -149,6 +156,7 @@ const AddAssetPage = () => {
                             control={control}
                             errors={errors?.cost}
                             type='number'
+                            handlerKeyDown={handleKeyPress}
                         />
                     </FormRow>
                 </div>
@@ -162,6 +170,7 @@ const AddAssetPage = () => {
                             control={control}
                             errors={errors?.quantity}
                             type='number'
+                            handlerKeyDown={handleKeyPress}
                         />
                     </FormRow>
                 </div>
@@ -176,6 +185,7 @@ const AddAssetPage = () => {
                             register={register}
                             control={control}
                             errors={errors?.details}
+                            handlerKeyDown={handleKeyPress}
                         />
                     </FormRow>
                 </div>

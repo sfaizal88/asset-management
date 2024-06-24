@@ -22,6 +22,7 @@ type TextFieldProps = {
     register?: any;
     control?: any;
     errors?: any;
+    handlerKeyDown?: (event: any) =>  void;
 }
 
 // TEXTFIELD COMPONENT DECLARE
@@ -34,6 +35,7 @@ const TextField = ({
     control,
     errors,
     register,
+    handlerKeyDown,
 }: TextFieldProps) => {
     return (
         <Controller
@@ -48,6 +50,11 @@ const TextField = ({
                     id={id || name}
                     className={clsx('input-field', errors?.message && 'error-field')}
                     rows={rows}
+                    onKeyDown={(e) => {
+                        if (handlerKeyDown) {
+                            handlerKeyDown?.(e)
+                        }
+                    }}
                 ></textarea>
                 <div className='error-box'>{errors?.message}</div>
             </>
